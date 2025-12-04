@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { analyzeSentenceServer } from '@/lib/gemini';
+import { analyzeSentenceServer } from '../../../lib/gemini';
 
 export async function POST(req: NextRequest) {
   try {

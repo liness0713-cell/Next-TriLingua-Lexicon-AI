@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { generateSpeechServer } from '@/lib/gemini';
+import { generateSpeechServer } from '../../../lib/gemini';
 
 export async function POST(req: NextRequest) {
   try {
