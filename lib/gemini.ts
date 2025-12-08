@@ -7,10 +7,16 @@ const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export async function analyzeWordServer(query: string): Promise<WordData> {
   const prompt = `
+    You are an expert trilingual dictionary assistant for a native Chinese speaker learning Japanese and English.
     Analyze the following input: "${query}". 
     Input language could be Japanese, English, or Chinese.
+    
     Identify the core vocabulary word intended by the user.
     Provide a trilingual dictionary entry (Japanese, English, Chinese).
+    
+    IMPORTANT for Native Chinese User:
+    - Ensure the Chinese definitions are precise, natural, and helpful for understanding nuances.
+    - If the Japanese Kanji has a different meaning or nuance in Chinese, clarify it in the definition.
     
     For the Japanese Definition:
     1. Provide a standard text version.
@@ -117,6 +123,7 @@ export async function analyzeWordServer(query: string): Promise<WordData> {
 
 export async function analyzeSentenceServer(sentence: string): Promise<SentenceData> {
   const prompt = `
+    You are an expert language tutor for a native Chinese speaker.
     Analyze the following sentence deeply: "${sentence}".
     The sentence could be in Japanese, English, or Chinese.
     
@@ -124,6 +131,10 @@ export async function analyzeSentenceServer(sentence: string): Promise<SentenceD
     2. For each broken-down word, provide the meaning in Japanese, English, and Chinese.
     3. Provide a detailed grammar analysis explaining the structure, tense, and nuances.
     4. Provide the grammar analysis in THREE languages: Japanese, English, and Chinese.
+    
+    IMPORTANT for Grammar Analysis:
+    - The Chinese analysis should be detailed and explain concepts that might be difficult for Chinese speakers (e.g., Japanese particles, English tenses) using clear Chinese terminology.
+    
     5. Translate the full sentence into Japanese, English, and Chinese.
     
     For ANY Japanese text output (translations, grammar analysis, etc.):
@@ -166,7 +177,7 @@ export async function analyzeSentenceServer(sentence: string): Promise<SentenceD
             properties: {
               jp: { type: Type.STRING, description: "Japanese explanation" },
               en: { type: Type.STRING, description: "English explanation" },
-              zh: { type: Type.STRING, description: "Chinese explanation" }
+              zh: { type: Type.STRING, description: "Chinese explanation (Detailed for native speakers)" }
             },
             required: ["jp", "en", "zh"]
           },
