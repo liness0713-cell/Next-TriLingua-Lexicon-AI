@@ -300,7 +300,9 @@ function App() {
         </div>
         <div className="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar relative">
           <div className="max-w-4xl mx-auto min-h-full pb-20">
+            {/*
             <AdUnit format="horizontal" />
+            */}
             {showPlaceholder && (
               <div className="flex flex-col items-center justify-center h-64 text-slate-400 opacity-60">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={0.5} stroke="currentColor" className="w-32 h-32 mb-4">
@@ -353,7 +355,9 @@ function App() {
             {mode === 'sentence' && currentSentenceData && (
               <SentenceAnalysis data={currentSentenceData} />
             )}
+            {/*
             <AdUnit format="horizontal" className="mt-8" />
+            */}
           </div>
         </div>
       </div>
